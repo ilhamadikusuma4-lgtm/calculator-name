@@ -1,12 +1,16 @@
 let display = document.getElementById('display');
 let historyList = document.getElementById('historyList');
 let themeToggleBtn = document.getElementById('themeToggle');
+// fungsi dari document.getElementById adalah Metode getElementById() antarmuka ini Document mengembalikan Element objek yang mewakili elemen yang id propertinya cocok dengan string yang ditentukan. Karena ID elemen harus unik jika ditentukan, ini merupakan cara yang berguna untuk mengakses elemen tertentu dengan cepat.
+// sumber : https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById
 
 let currentInput = '0';
 let operator = null;
 let previousInput = null;
 let shouldResetDisplay = false;
 let historyEntries = JSON.parse(localStorage.getItem('calculatorHistory') || '[]');
+// fungsi dari JSON.parse(localStorage.getItem adalah untuk untuk mengkonversi JSON string ke dalam object JavaScript.
+// sumber : https://dikiharifwibowo.medium.com/panduan-menggunakan-localstorage-di-javascript-fcb9296859a
 
 function updateDisplay() {
     if (operator !== null && previousInput !== null) {
@@ -15,6 +19,8 @@ function updateDisplay() {
         display.value = currentInput;
     }
 }
+// fungsi dari function updateDisplay adalah untuk memperbarui nilai yang ditampilkan 
+// sumber : https://dev.to/stewyearth/making-a-simple-counter-in-javascript-html-2ici
 
 function appendNumber(num) {
     if (shouldResetDisplay) {
@@ -34,6 +40,8 @@ function appendNumber(num) {
     }
     updateDisplay();
 }
+// fungsi dari function appendNumber adalah Metode append() menyisipkan konten yang ditentukan di akhir elemen yang dipilih.
+// sumber: https://www.w3schools.com/jquery/html_append.asp
 
 function appendOperator(op) {
     if (operator !== null && !shouldResetDisplay) {
@@ -44,6 +52,8 @@ function appendOperator(op) {
     shouldResetDisplay = true;
     updateDisplay();
 }
+// fungsi dari function appendOperator adalah untuk menambahkan operator ke dalam perhitungan
+// sumber: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/parseFloat
 
 function calculate() {
     if (operator === null || previousInput === null) {
@@ -185,7 +195,12 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Initialize display, theme, and history
 loadTheme();
+// fungsi dari loadTheme adalah untuk memuat tema yang disimpan 
+// sumber: https://www.w3schools.com/jsref/event_onload.asp
 renderHistory();
+// fungsi dari renderHistory adalah untuk menampilkan riwayat perhitungan yang disimpan 
+// sumber: https://developer.mozilla.org/en-US/docs/Web/API/History_API
 updateDisplay();
+// fungsi dari updateDisplay adalah untuk memperbarui nilai yang ditampilkan
+// sumber: https://dev.to/stewyearth/making-a-simple-counter-in-javascript-html-2ici
